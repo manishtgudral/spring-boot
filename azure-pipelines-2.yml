@@ -1,0 +1,28 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- main
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testme-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testme
+  template:
+    metadata:
+      labels:
+        app: testme
+    spec:
+      containers:
+        - name: testme-container
+          image: springbootlearn.azurecr.io
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
