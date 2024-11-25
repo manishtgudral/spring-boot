@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testme-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testme
+  template:
+    metadata:
+      labels:
+        app: testme
+    spec:
+      containers:
+        - name: testme-container
+          image: acrlndqa.azurecr.io/laukendrasingh/testme:56
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
